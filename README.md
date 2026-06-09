@@ -114,5 +114,5 @@ This project demonstrates end-to-end RAG pipeline design, vector database integr
 
 ## 👤 Author
 
-**Mohamad Hussen Chamsi**
-📫 [LinkedIn](https://www.linkedin.com/in/YOUR_LINKEDIN_HERE) | ✉️ YOUR_EMAIL_HERE
+**Mohamad Chamsi**
+ ✉️ mohamad.chamsi@oulook.com
