@@ -170,5 +170,5 @@ This project demonstrates:
 
 ## 👤 Author
 
-**Mohamad Hussen Chamsi**
-📫 [LinkedIn](https://www.linkedin.com/in/YOUR_LINKEDIN_HERE) | ✉️ YOUR_EMAIL_HERE
+**Mohamad Chamsi**
+📫 [LinkedIn](https://www.linkedin.com/in/mohamad-chamsi-5878772b9) | ✉️ mohamad.chamsi@outlook.com
