@@ -2,11 +2,34 @@
 
 A fully local **Retrieval-Augmented Generation (RAG)** application that lets you ask questions about any PDF document — powered by **Ollama (Llama 3.2)** and **ChromaDB**. No API keys, no cloud, completely free to run.
 
+Available in two modes:
+- 🖥️ **Terminal app** — lightweight, runs in the command line
+- 🌐 **Web app** — upload PDF and chat in the browser (Streamlit)
+
 ---
 
-## 🎯 What It Does
+## 🌐 Web App Preview
 
-Upload any PDF and ask questions about it in plain English. The system finds the most relevant sections and generates accurate, context-aware answers.
+Upload a PDF → Ask questions → Get answers with page references
+
+```
+┌─────────────────────────────────────────────────┐
+│  📄 Upload PDF          │  💬 Chat               │
+│  ─────────────────      │  ──────────────────    │
+│  [ Choose file ]        │  You: What is the      │
+│                         │  main research goal?   │
+│  [ 🚀 Process PDF ]     │                        │
+│                         │  🤖 The main goal is.. │
+│  ─────────────────      │  📚 Sources: Page 3·7  │
+│  Settings               │                        │
+│  Model: llama3.2        │  [ Ask a question... ] │
+│  Chunk size: 1200       │                        │
+└─────────────────────────────────────────────────┘
+```
+
+---
+
+## 🎯 How It Works
 
 ```
 PDF Document
@@ -17,7 +40,7 @@ PDF Document
     → User asks a question
     → Semantic search finds top 6 relevant chunks
     → Llama 3.2 generates an answer
-    → Answer + sources returned to user
+    → Answer + page sources returned to user
 ```
 
 ---
@@ -31,11 +54,12 @@ PDF Document
 | Embeddings | Sentence Transformers (all-MiniLM-L6-v2) |
 | PDF Loading | LangChain + PyPDF |
 | RAG Framework | LangChain |
+| Web Interface | Streamlit |
 | Language | Python 3.13 |
 
 ---
 
-## 🚀 How to Run
+## 🚀 Getting Started
 
 ### 1. Install Ollama and pull the model
 ```bash
@@ -53,22 +77,29 @@ cd rag-document-assistant
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-pip install langchain langchain-community langchain-text-splitters langchain-ollama chromadb pypdf sentence-transformers
+pip install langchain langchain-community langchain-text-splitters langchain-ollama chromadb pypdf sentence-transformers streamlit
 ```
 
-### 4. Add your PDF
+---
+
+## 🖥️ Run Terminal App
+
 ```bash
 mkdir docs
 cp your-document.pdf docs/
-```
-
-### 5. Run the assistant
-```bash
 python3 app.py
 ```
 
-### 6. Ask questions!
+**Example session:**
 ```
+🚀 Starting RAG Document Assistant...
+
+📄 Found 1 PDF file(s): ['your-document.pdf']
+   ✅ Loaded: your-document.pdf
+✂️  Split into 84 chunks
+🔍 Building vector database...
+   ✅ Vector database ready!
+
 ==================================================
 🤖 RAG Document Assistant — Ready!
    Ask questions about your PDF.
@@ -89,13 +120,33 @@ The main research objective is...
 
 ---
 
+## 🌐 Run Web App
+
+```bash
+streamlit run streamlit_app.py
+```
+
+Opens automatically at `http://localhost:8501`
+
+1. Upload any PDF in the sidebar
+2. Click **Process PDF**
+3. Ask questions in the chat
+4. Get answers with page references
+
+> **Note:** Make sure Ollama is running in the background:
+> ```bash
+> ollama serve
+> ```
+
+---
+
 ## ⚙️ Configuration
 
-You can tune the RAG parameters at the top of `app.py`:
+Tune RAG parameters at the top of `app.py` or `streamlit_app.py`:
 
 ```python
-CHUNK_SIZE    = 1200   # Size of each text chunk
-CHUNK_OVERLAP = 200    # Overlap between chunks
+CHUNK_SIZE    = 1200   # Size of each text chunk (larger = more context)
+CHUNK_OVERLAP = 200    # Overlap between chunks (reduces missed answers)
 TOP_K         = 6      # Number of chunks retrieved per query
 MODEL_NAME    = "llama3.2"  # Ollama model to use
 ```
@@ -104,15 +155,20 @@ MODEL_NAME    = "llama3.2"  # Ollama model to use
 
 ## 🎓 About
 
-Built as part of my AI/ML portfolio while completing a double M.Sc. in:
+Built as part of my AI/ML engineering portfolio while completing a double M.Sc. in:
 - **Artificial Intelligence** — Østfold University College (HiØ), Norway
 - **IT, Digitalisation & Sustainability** — Lucerne University of Applied Sciences (HSLU), Switzerland
 
-This project demonstrates end-to-end RAG pipeline design, vector database integration, and local LLM deployment — core skills for AI engineering roles.
+This project demonstrates:
+- ✅ End-to-end RAG pipeline design
+- ✅ Vector database integration (ChromaDB)
+- ✅ Local LLM deployment (Ollama)
+- ✅ Web application development (Streamlit)
+- ✅ Python software engineering best practices
 
 ---
 
 ## 👤 Author
 
-**Mohamad Chamsi**
- ✉️ mohamad.chamsi@oulook.com
+**Mohamad Hussen Chamsi**
+📫 [LinkedIn](https://www.linkedin.com/in/YOUR_LINKEDIN_HERE) | ✉️ YOUR_EMAIL_HERE
